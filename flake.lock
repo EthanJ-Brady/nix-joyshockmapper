@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "gamepadmotionhelpers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1680449937,
+        "narHash": "sha256-yEEcjUzXQAyc/3STuH7Yhbl5r+/S+M15AxNDEbhJuAY=",
+        "owner": "JibbSmart",
+        "repo": "GamepadMotionHelpers",
+        "rev": "39b578aacf34c3a1c584d8f7f194adc776f88055",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JibbSmart",
+        "repo": "GamepadMotionHelpers",
+        "type": "github"
+      }
+    },
     "magic-enum": {
       "flake": false,
       "locked": {
@@ -50,6 +66,7 @@
     },
     "root": {
       "inputs": {
+        "gamepadmotionhelpers": "gamepadmotionhelpers",
         "magic-enum": "magic-enum",
         "nixpkgs": "nixpkgs",
         "pocket-fsm": "pocket-fsm",

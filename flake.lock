@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1737746512,
+        "narHash": "sha256-nU6AezEX4EuahTO1YopzueAXfjFfmCHylYEFCagduHU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "825479c345a7f806485b7f00dbe3abb50641b083",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "pocket-fsm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1621622352,
+        "narHash": "sha256-/dvOMEV9mduqk+BVpUqtdVGAEHIDmiQOIjMZPDzABRs=",
+        "owner": "Electronicks",
+        "repo": "Pocket_FSM",
+        "rev": "e447ec24c7a547bd1fbe8d964baa866a9cf146c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Electronicks",
+        "repo": "Pocket_FSM",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "pocket-fsm": "pocket-fsm"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

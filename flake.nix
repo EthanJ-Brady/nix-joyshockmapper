@@ -3,11 +3,16 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    pocket-fsm = {
+      url = "github:Electronicks/Pocket_FSM";
+      flake = false;
+    };
   };
 
   outputs =
     {
       nixpkgs,
+      pocket-fsm,
       ...
     }:
     let
@@ -45,14 +50,17 @@
         configurePhase = ''
           mkdir -p external/SDL2
           mkdir -p external/magic_enum
+          mkdir -p external/pocket_fsm
           cp -r ${pkgs.SDL2}/* external/SDL2/
           cp -r ${pkgs.magic-enum}/* external/magic_enum/
+          cp -r ${pocket-fsm}/* external/pocket_fsm/
 
           # Use absolute paths and be explicit about sources
           cmake -B build \
-            -DCMAKE_PREFIX_PATH="$PWD/external/SDL2;$PWD/external/magic_enum" \
+            -DCMAKE_PREFIX_PATH="$PWD/external/SDL2;$PWD/external/magic_enum;$PWD/external/pocket_fsm" \
             -DCPM_SDL2_SOURCE="$PWD/external/SDL2" \
             -DCPM_MAGIC_ENUM_SOURCE="$PWD/external/magic_enum" \
+            -DCPM_POCKET_FSM="$PWD/external/pocket_fsm" \
             -DCPM_USE_LOCAL_PACKAGES=ON \
             -DCPM_LOCAL_PACKAGES_ONLY=ON
         '';

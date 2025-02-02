@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "magic-enum": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1644593916,
+        "narHash": "sha256-b12MTYeW/Br8i4Sq+cKIGeJYeWSCk6AieSnGfGSHcTQ=",
+        "owner": "jamek",
+        "repo": "magic_enum",
+        "rev": "c191adc1af06a14967bd6433098e92132f84074d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jamek",
+        "repo": "magic_enum",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1737746512,
@@ -34,8 +50,26 @@
     },
     "root": {
       "inputs": {
+        "magic-enum": "magic-enum",
         "nixpkgs": "nixpkgs",
-        "pocket-fsm": "pocket-fsm"
+        "pocket-fsm": "pocket-fsm",
+        "sdl": "sdl"
+      }
+    },
+    "sdl": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738531042,
+        "narHash": "sha256-1Svy+qTLJxjjAbOBKlpzUwdiwaUZb5Lslp/FSoiSipg=",
+        "owner": "libsdl-org",
+        "repo": "SDL",
+        "rev": "842f85da05557f168e79ef1c95057223cd3fa7fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "libsdl-org",
+        "repo": "SDL",
+        "type": "github"
       }
     }
   },

@@ -7,12 +7,22 @@
       url = "github:Electronicks/Pocket_FSM";
       flake = false;
     };
+    magic-enum = {
+      url = "github:jamek/magic_enum";
+      flake = false;
+    };
+    sdl = {
+      url = "github:libsdl-org/SDL";
+      flake = false;
+    };
   };
 
   outputs =
     {
       nixpkgs,
       pocket-fsm,
+      magic-enum,
+      sdl,
       ...
     }:
     let
@@ -48,21 +58,18 @@
         ];
 
         configurePhase = ''
-          mkdir -p external/SDL2
-          mkdir -p external/magic_enum
-          mkdir -p external/pocket_fsm
-          cp -r ${pkgs.SDL2}/* external/SDL2/
-          cp -r ${pkgs.magic-enum}/* external/magic_enum/
-          cp -r ${pocket-fsm}/* external/pocket_fsm/
+          mkdir -p external/pocket_fsm && cp -r ${pocket-fsm}/* external/pocket_fsm/
+          mkdir -p external/magic_enum && cp -r ${magic-enum}/* external/magic_enum/
+          mkdir -p external/SDL2 && cp -r ${sdl}/* external/SDL2/
 
-          # Use absolute paths and be explicit about sources
           cmake -B build \
-            -DCMAKE_PREFIX_PATH="$PWD/external/SDL2;$PWD/external/magic_enum;$PWD/external/pocket_fsm" \
+            -DCMAKE_PREFIX_PATH="$PWD/external/pocket_fsm;$PWD/external/magic_enum;$PWD/external/SDL2" \
+            -DCPM_pocket_fsm_SOURCE="$PWD/external/pocket_fsm" \
+            -DCPM_magic_enum_SOURCE="$PWD/external/magic_enum" \
             -DCPM_SDL2_SOURCE="$PWD/external/SDL2" \
-            -DCPM_MAGIC_ENUM_SOURCE="$PWD/external/magic_enum" \
-            -DCPM_POCKET_FSM="$PWD/external/pocket_fsm" \
+            -DCPM_LOCAL_PACKAGES_ONLY=ON \
             -DCPM_USE_LOCAL_PACKAGES=ON \
-            -DCPM_LOCAL_PACKAGES_ONLY=ON
+            -DCPM_DOWNLOAD_ALL=OFF
         '';
 
         buildPhase = ''

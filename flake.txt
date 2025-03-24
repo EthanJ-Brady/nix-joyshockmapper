@@ -11,10 +11,6 @@
       url = "github:jamek/magic_enum";
       flake = false;
     };
-    sdl = {
-      url = "github:libsdl-org/SDL";
-      flake = false;
-    };
     gamepadmotionhelpers = {
       url = "github:JibbSmart/GamepadMotionHelpers";
       flake = false;
@@ -47,6 +43,7 @@
           libusb1
           SDL2
           hidapi
+          sysprof
         ];
 
         nativeBuildInputs = with pkgs; [
@@ -60,6 +57,7 @@
           mkdir -p external
           cp -r ${inputs.pocket-fsm} external/pocket_fsm
           cp -r ${inputs.magic-enum} external/magic_enum
+          cp -r ${pkgs.SDL2} external/sdl2
           cp -r ${inputs.gamepadmotionhelpers} external/gamepadmotionhelpers
 
           # Patch GamepadMotionHelpers CMakeLists.txt if needed
@@ -69,14 +67,12 @@
 
           # Configure CMake with direct source paths
           cmake -B build \
-            -DCMAKE_PREFIX_PATH="${pkgs.SDL2}/bin" \
             -DCPM_pocket_fsm_SOURCE="$PWD/external/pocket_fsm" \
             -DCPM_magic_enum_SOURCE="$PWD/external/magic_enum" \
-            -DCPM_SDL2_SOURCE="${pkgs.SDL2}/bin/" \
             -DCPM_GamepadMotionHelpers_SOURCE="$PWD/external/gamepadmotionhelpers" \
+            -DCPM_SDL2_SOURCE="$PWD/external/sdl2" \
             -DCPM_DOWNLOAD_ALL=OFF \
             -Wno-dev \
-            -DCMAKE_POLICY_DEFAULT_CMP0169=OLD
         '';
 
         buildPhase = "cmake --build build";
